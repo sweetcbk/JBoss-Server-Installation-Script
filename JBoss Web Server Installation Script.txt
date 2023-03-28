@@ -1,0 +1,39 @@
+====================================================================================================
+  JBOSS Web Server Install on Centos7/8
+====================================================================================================
+-----------------------------------------------------------------------------------------------------
+::  JBoss Web Server Download Url  ::
+Link1->> https://developers.redhat.com/products/eap/download
+Link2->> https://www.mediafire.com/file/oyt2ykfeqsl8l08/jboss-eap-7.4.0-installer.jar
+-----------------------------------------------------------------------------------------------------
+[root@master ~]# yum install java-11-openjdk-devel
+[root@master ~]# java --version
+[root@master ~]# wget https://www.mediafire.com/file/oyt2ykfeqsl8l08/jboss-eap-7.4.0-installer.jar
+[root@master ~]# ls
+[root@master ~]# chmod 777 jboss-eap-7.4.0-installer.jar
+[root@master ~]# ls -l
+[root@master ~]# java -jar jboss-eap-7.4.0-installer.jar 
+[root@master ~]# ls
+[root@master ~]# cd /EAP-7.4.0/
+[root@master ~]# cd bin/
+[root@master ~]# ls
+[root@master ~]# ./standalone.sh 
+
+Allow the port through the firewall.
+------------------------------------
+[root@master ~]# firewall-cmd --zone=public --permanent --add-port=9990/tcp 
+[root@master ~]# firewall-cmd --reload
+
+## Here you can access the web console using the URL http://127.0.0.1:9990
+
+----------------------------
+## For a Specific IP Address
+----------------------------
+[root@master ~]# cd /EAP-7.4.0/bin/standalone.sh -b 192.168.205.2 -bmanagement 192.168.205.2
+
+## Now using the URL http://IP_address:9990
+## Eg:- http://192.168.205.2:9990
+
+
+
+ 
